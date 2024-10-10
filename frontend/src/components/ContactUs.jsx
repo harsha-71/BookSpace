@@ -38,13 +38,13 @@ const ContactUs = () => {
                 <div className="relative w-[600px] bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
                     <form onSubmit={handleSubmit(onSubmit)} method="dialog">
                         {/* Close button */}
-                        <Link to={"/"} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</Link>
+                        <Link to={"/"} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-black">✕</Link>
 
-                        <h3 className="font-bold text-2xl mb-4">Contact Us</h3>
+                        <h3 className="font-bold text-2xl mb-4 text-black">Contact Us</h3>
 
                         {/* Name */}
                         <div className='mt-4 space-y-2'>
-                            <span className="text-md font-semibold">Name</span>
+                            <span className="text-md font-semibold text-black">Name</span>
                             <input 
                                 type='text' 
                                 placeholder='Enter your name' 
@@ -56,7 +56,7 @@ const ContactUs = () => {
 
                         {/* Email */}
                         <div className='mt-4 space-y-2'>
-                            <span className="text-md font-semibold">Email</span>
+                            <span className="text-md font-semibold text-black">Email</span>
                             <input 
                                 type='email' 
                                 placeholder='Enter your email' 
@@ -68,7 +68,7 @@ const ContactUs = () => {
 
                         {/* Message */}
                         <div className='mt-4 space-y-2'>
-                            <span className="text-md font-semibold">Message</span>
+                            <span className="text-md font-semibold text-black">Message</span>
                             <textarea 
                                 placeholder='Enter your message...' 
                                 className='w-full px-3 py-2 border rounded-md outline-none focus:ring-2 focus:ring-pink-400'

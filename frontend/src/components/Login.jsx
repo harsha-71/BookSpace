@@ -1,6 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form"
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 function Login() {
     const {
@@ -9,8 +11,36 @@ function Login() {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
-        console.log(data) // This will log the form data to the console
+    const onSubmit = async (data) =>  {
+        const userInfo = {
+            email : data.email,
+            password : data.password,
+          }
+      
+          await axios.post("http://localhost:4001/user/login", userInfo)
+          .then((res) =>{
+            console.log(res.data)
+            if(res.data)
+            {
+              
+              toast.success('Login Successfully');
+              document.getElementById("my_modal_3").close();
+              setTimeout(() => {
+                 window.location.reload();
+                localStorage.setItem("Users", JSON.stringify(res.data.user));
+              }, 2000)  
+              
+            }
+           
+          }).catch((err) => {
+            if(err.response)
+            {
+              console.log(err);
+              
+              toast.error("Error: " +err.response.data.message);
+              setTimeout(() => {},2000);
+            }
+          });
     }
 
     return (
@@ -21,6 +51,8 @@ function Login() {
 
                     {/* Form start */}
                     <form onSubmit={handleSubmit(onSubmit)} method="dialog">
+                    <Link to={"/"} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                    onClick={() => document.getElementById("my_modal_3").closest()}>✕</Link>
                         {/* Email */}
                         <div className='mt-4 space-y-2'>
                             <label>Email</label>
@@ -54,7 +86,7 @@ function Login() {
                         </div>
 
                         {/* Close button */}
-                        <Link to={"/"} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</Link>
+                        
                     </form>
                     {/* Form end */}
                 </div>
